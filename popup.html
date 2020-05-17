@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="popup.css">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <h1 id="title">Text Selector</h1>
+        <hr/>
+        <div class="container-all">
+
+            <div class="container-create-file-view" class="fa-4x">
+                <i id="create-file" class="far fa-file file-icon fa-6x"><i class="fas fa-plus plus-icon"></i></i>
+            </div>
+
+            <div class="container-download-delete-file-view">
+                <i style="visibility:hidden;" id="download-file" class="fas fa-file-download fa-6x"></i>
+                <span style="margin: 10px;"></span>
+                <i style="visibility:hidden;" id="delete-file" class="fas fa-trash-alt fa-6x"></i>
+            </div>
+        </div>
+        <div class="tooltip">
+            <i style="visibility:hidden;" id="instructions" class="far fa-question-circle info">
+                <span class="tooltiptext">A new file has been created! Now press "Ctrl+Shift+P" ("Cmd+Shift+P" in OSX) to copy selected text to the file, in any tab. When you finish the process, click the download or delete icons</span>
+            </i>
+        </div>
+    </body>
+    <script src="popup.js"></script>
+</html>
