@@ -7,11 +7,22 @@ chrome.runtime.onMessage.addListener( (request, sender, sendResponse) => {
 });
 
 chrome.commands.onCommand.addListener(function(command) {
+
     if(command === "copy-text" && isSelecting) {
 
         chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
 
             chrome.tabs.executeScript({code: "window.getSelection().toString();"}, results => {
+
+                if(chrome.runtime.lastError) {
+                    let message = buildErrorMessage(chrome.runtime.lastError.message)
+                    chrome.storage.local.get(items => {
+                        let resultObj = buildContentArray(items, "ERROR", message, getCurrentDate());
+                        chrome.storage.local.set({"fileString": resultObj});
+                        
+                    });
+                    return;
+                }
 
                 chrome.storage.local.get(items => {
 
@@ -60,4 +71,10 @@ const getCurrentDate = () => {
 
     today = dd + '/' + mm + '/' + yyyy;
     return today;
+}
+
+const buildErrorMessage = (errorMessage) => {
+    return "ERROR", "Error Message: " + errorMessage + ".\n\n" +
+    "This extension only accepts text selected from pages with url protocols 'http' or 'https'.\n\n" +
+    "For more information or suggestions contact: andre.rua.pires@gmail.com\n\n";
 }
