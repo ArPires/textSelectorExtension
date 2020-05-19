@@ -1,6 +1,6 @@
 {
     "name": "Select Text To File",
-    "version": "0.1",
+    "version": "1.0.0",
     "description": "Google Chrome extension appends selected text to a file to later download.",
     "permissions": [
         "commands",
